@@ -30,6 +30,8 @@ public class Produto {
     @Column(nullable = false)
     private int qtdProduto;
 
+    private String imagemUrl;
+
     @OneToMany(mappedBy = "produto", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Receita> receitas;
 

@@ -1,5 +1,5 @@
 import { api } from "../config/api";
-import type { Produto } from "../types/Produtos";
+import type { produto } from "../types/produto";
 
 /*
 Toda função assíncrona retorna um Promise, uma promessa de que havera retorno após os dados serem carregados. 
@@ -8,8 +8,8 @@ Usamos genérics pois a lib Axios não têm como saber o que sera retornado na r
 A sintaxe é mais limpa em JavaScript, mas deste modo é bom para compreender o funcionamento.
 */
 export const produtoService = {
-  listarTodos: async (): Promise<Produto[]> => {
-    const resposta = await api.get<Produto[]>("/produtos");
+  listarTodos: async (): Promise<produto[]> => {
+    const resposta = await api.get<produto[]>("/produtos");
     return resposta.data;
   },
 };

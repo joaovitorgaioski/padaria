@@ -43,6 +43,7 @@ public class ProdutoService {
         produto.setNome(produtoAtualizado.getNome());
         produto.setPreco(produtoAtualizado.getPreco());
         produto.setQtdProduto(produtoAtualizado.getQtdProduto());
+        produto.setImagemUrl(produtoAtualizado.getImagemUrl());
 
         return produtoRepository.save(produto);
     }
