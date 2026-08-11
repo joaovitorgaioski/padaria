@@ -30,7 +30,7 @@ export default function Menu() {
   }
 
   return (
-    <div className="min-h-screen bg-slate-100 p-6">
+    <div className="min-h-screen p-6">
       <div className="mx-auto grid max-w-7xl grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
         {produtos.map((produto) => (
           <Product key={produto.id} produto={produto} />
