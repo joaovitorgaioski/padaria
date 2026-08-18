@@ -6,7 +6,7 @@ interface ProductProps {
 
 export default function Product({ produto }: ProductProps) {
   return (
-    <div className="overflow-hidden rounded-2xl border border-[#3f2b27]/10 bg-[#f7efe6] shadow-sm">
+    <div className="overflow-hidden rounded-2xl border border-[#3f2b27]/10 bg-slate-100 shadow-sm">
       <img
         src={produto.imagemUrl}
         alt={produto.nome}
