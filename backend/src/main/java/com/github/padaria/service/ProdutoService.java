@@ -3,6 +3,8 @@ package com.github.padaria.service;
 import com.github.padaria.exception.NotFoundException;
 import com.github.padaria.model.Produto;
 import com.github.padaria.repository.ProdutoRepository;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -16,8 +18,12 @@ public class ProdutoService {
         this.produtoRepository = produtoRepository;
     }
 
-    public List<Produto> listar() {
-        return produtoRepository.findAll();
+    // Busca por nome, senão busca todos seguindo o padrão de 20 elementos
+    public Page<Produto> buscar(String busca, Pageable pageable) {
+        if (busca != null && !busca.isBlank()) {
+            return produtoRepository.findByNome(busca, pageable);
+        }
+        return produtoRepository.findAll(pageable);
     }
 
     public Produto obterProduto(Integer id) {

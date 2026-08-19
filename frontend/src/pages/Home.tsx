@@ -51,11 +51,12 @@ export default function Home() {
   const [currentIndex, setCurrentIndex] = useState(0);
 
   useEffect(() => {
+    // Só 5 produtos
     produtoService
-      .listarTodos()
+      .buscar("", 0, 5)
       .then((dados) => {
-        if (dados && dados.length > 0) {
-          setProdutos(dados.slice(0, 5));
+        if (dados?.content && dados.content.length > 0) {
+          setProdutos(dados.content);
         }
       })
       .catch((erro) => {

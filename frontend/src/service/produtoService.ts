@@ -1,15 +1,17 @@
 import { api } from "../config/api";
 import type { produto } from "../types/produto";
+import type { pageResponse } from "../types/pageResponse";
 
 /*
-Toda função assíncrona retorna um Promise, uma promessa de que havera retorno após os dados serem carregados. 
-Nesse caso, retorna um array de Produtos ( Proimise<Produto[]> ).
-Usamos genérics pois a lib Axios não têm como saber o que sera retornado na requisição.
-A sintaxe é mais limpa em JavaScript, mas deste modo é bom para compreender o funcionamento.
+Função assíncrona que busca as páginas pelo endpoint "/produtos", com os parâmetros
+busca, pagina e tamanho. Retorna o tipo genérico pageResponse, ou seja, os produtos
+são salvos dentro de content.
 */
 export const produtoService = {
-  listarTodos: async (): Promise<produto[]> => {
-    const resposta = await api.get<produto[]>("/produtos");
+  buscar: async (busca = "", pagina = 0, tamanho = 20) => {
+    const resposta = await api.get<pageResponse<produto>>("/produtos", {
+      params: { busca, pagina, tamanho },
+    });
     return resposta.data;
   },
 };

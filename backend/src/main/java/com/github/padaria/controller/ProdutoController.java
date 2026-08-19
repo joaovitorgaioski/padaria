@@ -2,23 +2,19 @@ package com.github.padaria.controller;
 
 import java.util.List;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import com.github.padaria.model.Produto;
 import com.github.padaria.service.ProdutoService;
 
 @RestController
-@RequestMapping("/padaria/produtos")
+@RequestMapping("/produtos")
 @CrossOrigin(origins = "http://localhost:5173")
 public class ProdutoController {
 
@@ -28,9 +24,20 @@ public class ProdutoController {
         this.produtoService = produtoService;
     }
 
+    /*
+    Retorna uma Page de Produtos. Pages são "páginas" de dados. O Spring Data faz uma busca onde especificamos
+    a quantidade de elementos que queremos buscar (tamanho) e a página (0, 1, 2...)
+    */
     @GetMapping
-    public ResponseEntity<List<Produto>> exibirProdutos() {
-        List<Produto> produtos = produtoService.listar();
+    public ResponseEntity<Page<Produto>> buscar(
+            @RequestParam(required = false, defaultValue = "") String busca,
+            @RequestParam(defaultValue = "0") int pagina,
+            @RequestParam(defaultValue = "20") int tamanho
+    ) {
+        Pageable pageable = PageRequest.of(pagina, tamanho, Sort.by("nome").ascending());
+
+        Page<Produto> produtos = produtoService.buscar(busca, pageable);
+
         return ResponseEntity.ok(produtos);
     }
 
