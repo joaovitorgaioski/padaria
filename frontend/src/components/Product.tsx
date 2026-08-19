@@ -6,21 +6,21 @@ interface ProductProps {
 
 export default function Product({ produto }: ProductProps) {
   return (
-    <div className="overflow-hidden rounded-2xl border border-[#3f2b27]/10 bg-slate-100 shadow-sm">
+    <div className="flex flex-col h-full overflow-hidden rounded-2xl border border-[#3f2b27]/10 bg-slate-100 shadow-sm">
       <img
         src={produto.imagemUrl}
         alt={produto.nome}
         className="h-48 w-full object-cover"
       />
 
-      <div className="p-4">
+      <div className="flex flex-col flex-1 p-4">
         <h3 className="text-lg font-semibold text-[#3f2b27]">{produto.nome}</h3>
         
         <p className="mt-1 text-sm text-[#7a5947]">
           {produto.qtdProduto > 0 ? `${produto.qtdProduto} disponíveis` : "Esgotado"}
         </p>
 
-        <div className="mt-4 flex items-center justify-between">
+        <div className="mt-auto pt-4 flex items-center justify-between">
           <span className="text-xl font-bold text-[#3f2b27]">
             R$ {produto.preco.toFixed(2)}
           </span>
