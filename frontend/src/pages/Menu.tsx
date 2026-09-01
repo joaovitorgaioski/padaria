@@ -5,6 +5,7 @@ import { produtoService } from "../service/produtoService";
 import Product from "../components/Product";
 import { useSearchParams } from "react-router-dom";
 import { ChevronLeft, ChevronRight } from "lucide-react";
+import Card from "../components/Card";
 
 export default function Menu() {
   const [carregando, setCarregando] = useState(true);
@@ -81,7 +82,7 @@ export default function Menu() {
       {/* Grid de Produtos e Busca */}
       <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
         {/* div de busca */}
-        <div className="sticky top-6 z-10 h-fit text-black bg-slate-100 border border-[#3f2b27]/10 rounded-2xl p-5 flex flex-col gap-2 shadow-sm">
+        <Card className="sticky top-6 z-10 h-fit p-4 gap-2">
           <h2>Digite um produto</h2>
           <input
             type="text"
@@ -100,7 +101,7 @@ export default function Menu() {
           >
             Voltar a página inicial
           </button>
-        </div>
+        </Card>
         {/* map que renderiza os produtos */}
         {produtos.map((produto) => (
           <Product key={produto.id} produto={produto} />

@@ -1,4 +1,5 @@
 import type { produto } from "../types/produto";
+import Card from "./Card";
 
 interface ProductProps {
   produto: produto;
@@ -6,7 +7,7 @@ interface ProductProps {
 
 export default function Product({ produto }: ProductProps) {
   return (
-    <div className="flex flex-col h-full overflow-hidden rounded-2xl border border-[#3f2b27]/10 bg-slate-100 shadow-sm">
+    <Card>
       <img
         src={produto.imagemUrl}
         alt={produto.nome}
@@ -14,14 +15,16 @@ export default function Product({ produto }: ProductProps) {
       />
 
       <div className="flex flex-col flex-1 p-4">
-        <h3 className="text-lg font-semibold text-[#3f2b27]">{produto.nome}</h3>
-        
+        <h3 className="text-lg font-semibold">{produto.nome}</h3>
+
         <p className="mt-1 text-sm text-[#7a5947]">
-          {produto.qtdProduto > 0 ? `${produto.qtdProduto} disponíveis` : "Esgotado"}
+          {produto.qtdProduto > 0
+            ? `${produto.qtdProduto} disponíveis`
+            : "Esgotado"}
         </p>
 
         <div className="mt-auto pt-4 flex items-center justify-between">
-          <span className="text-xl font-bold text-[#3f2b27]">
+          <span className="text-xl font-bold">
             R$ {produto.preco.toFixed(2)}
           </span>
           <button className="rounded-full bg-[#3f2b27] px-3 py-1 text-sm text-[#f7efe6]">
@@ -29,6 +32,6 @@ export default function Product({ produto }: ProductProps) {
           </button>
         </div>
       </div>
-    </div>
+    </Card>
   );
 }
