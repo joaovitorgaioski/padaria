@@ -8,7 +8,7 @@ busca, pagina e tamanho. Retorna o tipo genérico pageResponse, ou seja, os prod
 são salvos dentro de content.
 */
 export const produtoService = {
-  buscar: async (busca = "", pagina = 0, tamanho = 20) => {
+  buscar: async (busca = "", pagina = 0, tamanho = 19) => {
     const resposta = await api.get<pageResponse<produto>>("/produtos", {
       params: { busca, pagina, tamanho },
     });
