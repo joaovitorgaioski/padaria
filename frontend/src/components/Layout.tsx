@@ -1,5 +1,9 @@
 import { NavLink, Outlet } from "react-router-dom";
-import { Copyright, User } from "lucide-react";
+import { Copyright, ShoppingCart, User } from "lucide-react";
+import Floating from "./Floating";
+import useCarrinho from "../hooks/useCarrinho";
+import { useState } from "react";
+import CartModal from "./CartModal";
 
 const navLinks = [
   { label: "Home", path: "/" },
@@ -10,8 +14,15 @@ const navLinks = [
 ];
 
 export default function Layout() {
+  const carrinho = useCarrinho();
+  const [isCartOpen, setCartOpen] = useState(false);
+
+  const toggleCartOpen = () => {
+    setCartOpen(!isCartOpen);
+  };
+
   return (
-    <div className="bg-[#6b3d23] flex flex-col text-blue-50 ">
+    <div className="bg-[#6b3d23] flex flex-col text-slate-50">
       <header className="flex justify-between gap-10 p-5">
         <h1>Backery</h1>
         <nav className="flex gap-10">
@@ -19,9 +30,7 @@ export default function Layout() {
             <NavLink
               key={item.path}
               to={item.path}
-              className={({ isActive }) =>
-                `text-slate-50 ${isActive && "font-bold"}`
-              }
+              className={({ isActive }) => `${isActive && "font-bold"}`}
             >
               {item.label}
             </NavLink>
@@ -30,7 +39,7 @@ export default function Layout() {
         <User />
       </header>
 
-      <main className="flex-1 bg-[#f7efe6] h-screen no-scrollbar">
+      <main className="flex-1 bg-[#f7efe6] h-screen no-scrollbar text-black">
         <Outlet />
       </main>
 
@@ -41,6 +50,18 @@ export default function Layout() {
         </div>
         <p className="text-sm italic">Faz parte do seu dia a dia!</p>
       </footer>
+
+      {carrinho.itens.length !== 0 && (
+        <Floating
+          onClick={() => {
+            toggleCartOpen();
+          }}
+        >
+          <ShoppingCart />
+        </Floating>
+      )}
+
+      {isCartOpen && <CartModal isOpen={isCartOpen} onClose={toggleCartOpen} />}
     </div>
   );
 }
