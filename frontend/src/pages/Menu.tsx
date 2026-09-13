@@ -82,7 +82,7 @@ export default function Menu() {
       {/* Grid de Produtos e Busca */}
       <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
         {/* div de busca */}
-        <Card className="sticky top-6 z-10 h-fit p-4 gap-2">
+        <Card className="sticky z-10 top-6 h-fit p-4 gap-2">
           <h2>Digite um produto</h2>
           <input
             type="text"
@@ -94,7 +94,7 @@ export default function Menu() {
             value={termoBusca}
           />
           <button
-            className="bg-[#6b3d23] text-blue-50 p-2 rounded-md cursor-pointer"
+            className="bg-[#3f2b27] text-blue-50 p-2 rounded-md cursor-pointer"
             onClick={() => {
               setTermoBusca("");
             }}

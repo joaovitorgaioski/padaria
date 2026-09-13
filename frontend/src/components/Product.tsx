@@ -11,7 +11,7 @@ export default function Product({ produto }: ProductProps) {
   const carrinho = useCarrinho();
 
   return (
-    <Card className="hover:translate-0.5 transition-all">
+    <Card className="hover:-translate-y-1 transition-all">
       <img
         src={produto.imagemUrl}
         alt={produto.nome}
@@ -35,7 +35,7 @@ export default function Product({ produto }: ProductProps) {
             Ver mais
           </button>
           <button
-            className="rounded-full bg-[#3f2b27] p-2 text-sm text-white cursor-pointer hover:bg-[#2e5a2e] hover:-translate-1 transition-all"
+            className="rounded-full bg-[#3f2b27] p-2 text-sm text-white cursor-pointer hover:ring-3 hover:ring-green-500 hover:-translate-y-1 transition-all"
             onClick={() => {
               carrinho.adicionarItem(produto);
             }}

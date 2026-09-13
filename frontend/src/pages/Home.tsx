@@ -78,7 +78,7 @@ export default function Home() {
     <div className="w-full flex flex-col m-0 p-0">
       
       {/* Sessão Carrossel */}
-      <section className="relative h-[70vh] w-full overflow-hidden bg-[#f7efe6] flex items-center">
+      <section className="relative h-[60vh] w-full overflow-hidden bg-[#f7efe6] flex items-center">
         <div
           className="flex w-full h-full transition-transform duration-700 ease-in-out"
           style={{ transform: `translateX(-${currentIndex * 100}%)` }}
